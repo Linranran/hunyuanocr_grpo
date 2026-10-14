@@ -1,0 +1,9 @@
+# Core dependencies for the Transformers/TRL GRPO examples.
+torch
+transformers
+trl
+datasets
+peft
+accelerate
+Pillow
+qwen-vl-utils
