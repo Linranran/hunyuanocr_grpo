@@ -2,11 +2,21 @@
 
 Sanitized training and data-generation scripts for GRPO experiments on OCR/VLM tasks.
 
+## Project layout
+
+```text
+docs/                    Guides and training notes
+scripts/data_generation/  GRPO candidate and dataset generation
+scripts/training/         GRPO training entry points
+scripts/evaluation/       Reward and evaluation helpers
+requirements.txt         Minimal Python dependencies
+```
+
 ## Contents
 
-- `swift_grpo_train_qwen.sh`, `qwen25_vl_grpo_train*.py`: GRPO training entry points.
-- `generate_grpo*.py`: candidate generation and reward dataset preparation.
-- `GRPO_TRAINING_GUIDE.md`: setup notes.
+- `scripts/training/swift_grpo_train_qwen.sh`, `scripts/training/qwen25_vl_grpo_train*.py`: GRPO training entry points.
+- `scripts/data_generation/generate_grpo*.py`: candidate generation and reward dataset preparation.
+- `docs/GRPO_TRAINING_GUIDE.md`: setup notes.
 
 Model, checkpoint, and dataset paths are placeholders. Set paths for your own environment before running. HTTP generation scripts read `MODEL_API_BASE_URL` and `MODEL_API_KEY` from environment variables. Keep credentials and private datasets out of Git.
 
@@ -38,10 +48,10 @@ GRPO强化学习训练
 
 | 文件名 | 说明 |
 |--------|------|
-| `generate_grpo_dataset.py` | GRPO数据集生成脚本 |
-| `qwen25_vl_grpo_train.py` | Python版本GRPO训练脚本 |
-| `swift_grpo_train_qwen.sh` | 命令行版本GRPO训练脚本 |
-| `swift_grpo_train_simple.sh` | 一键运行脚本（生成数据+训练） |
+| `scripts/data_generation/generate_grpo_dataset.py` | GRPO数据集生成脚本 |
+| `scripts/training/qwen25_vl_grpo_train.py` | Python版本GRPO训练脚本 |
+| `scripts/training/swift_grpo_train_qwen.sh` | 命令行版本GRPO训练脚本 |
+| `scripts/training/swift_grpo_train_simple.sh` | 一键运行脚本（生成数据+训练） |
 
 ## 1. 环境要求
 
@@ -57,7 +67,7 @@ swift --version
 
 ### 2.1 配置参数
 
-编辑 `generate_grpo_dataset.py` 中的配置：
+编辑 `scripts/data_generation/generate_grpo_dataset.py` 中的配置：
 
 ```python
 MODEL_PATH = '/path/to/model'
@@ -72,7 +82,7 @@ TEMPERATURES = [0.3, 0.7, 1.0, 1.2]  # 不同温度增加多样性
 ### 2.2 运行生成脚本
 
 ```bash
-python generate_grpo_dataset.py
+python scripts/data_generation/generate_grpo_dataset.py
 ```
 
 ### 2.3 数据集格式
@@ -104,10 +114,10 @@ python generate_grpo_dataset.py
 
 ### 方法一：使用Python脚本（推荐）
 
-编辑 `qwen25_vl_grpo_train.py` 配置后运行：
+编辑 `scripts/training/qwen25_vl_grpo_train.py` 配置后运行：
 
 ```bash
-python qwen25_vl_grpo_train.py
+python scripts/training/qwen25_vl_grpo_train.py
 ```
 
 训练参数：
@@ -124,13 +134,13 @@ python qwen25_vl_grpo_train.py
 ### 方法二：使用命令行（需要Swift支持RL）
 
 ```bash
-bash swift_grpo_train_qwen.sh
+bash scripts/training/swift_grpo_train_qwen.sh
 ```
 
 ### 方法三：一键运行
 
 ```bash
-bash swift_grpo_train_simple.sh
+bash scripts/training/swift_grpo_train_simple.sh
 ```
 
 ## 4. 训练优化建议
