@@ -26,11 +26,11 @@ This repository does not include model weights, checkpoints, OCR outputs, or tra
 
 ## GRPO Training Guide
 
-# Qwen2.5-VL GRPO 强化学习训练指南
+# HunyuanOCR GRPO 强化学习训练指南
 
 ## 概述
 
-本指南说明如何基于SFT训练好的Qwen2.5-VL模型，使用GRPO（Group Relative Policy Optimization）算法进行强化学习进一步优化OCR效果。
+本指南说明如何基于SFT训练好的 HunyuanOCR 模型，使用GRPO（Group Relative Policy Optimization）算法进一步优化 OCR 效果。
 
 ## 流程
 
@@ -221,4 +221,3 @@ A: 脚本已配置自动加载SFT的LoRA权重，在此基础上继续RL训练�
 
 - [ModelScope Swift官方文档](https://modelscope.cn/docs/llm-training-and-inference)
 - [GRPO论文: Group Relative Policy Optimization](https://arxiv.org/abs/xxxx)
-- [Qwen2.5-VL官方文档](https://github.com/QwenLM/Qwen-VL)
